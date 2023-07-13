@@ -1,7 +1,7 @@
 import boto3
 import pprint
 
-ec2_client = boto3.client("ec2", region_name="us-east-1")
+ec2_client = boto3.client("ec2", region_name="us-east-2")
 
 response = ec2_client.describe_instances()
 
@@ -18,7 +18,14 @@ if(response["Reservations"]):
             # Print Private IP address
             print("Private IP:" + instance["PrivateIpAddress"])
 
+            # Print state
+            state=instance["State"]["Name"]
+            print("State: "+ state)
+
             # Print Public IP
-            print("Public IP: "+ instance["PublicIpAddress"] + "\n" )
+            if(state!="stopped"):
+                print("Public IP: "+ instance["PublicIpAddress"] )
+            
+            print("\n")
 else:
     print("There are no EC2 instances.")
