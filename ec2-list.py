@@ -15,6 +15,9 @@ if(response["Reservations"]):
                 if tag["Key"]=="Name":
                     print("Instance: "+tag["Value"])
             
+            # Print Instance ID
+            print("InstanceID : "+ instance["InstanceId"])
+            
             # Print Private IP address
             print("Private IP:" + instance["PrivateIpAddress"])
 

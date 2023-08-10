@@ -28,7 +28,7 @@ while item<=number_of_servers:
                 "Tags":[
                     {
                         "Key":"Name",
-                        "Value":f"deploysrv{item}"
+                        "Value":f"testsrv{item}"
                     },
                 ]
             },
