@@ -21,26 +21,30 @@ if(response_instance["Reservations"]):
             if answer.lower()=="yes":
                 print("Creating snapshot")
                 creation_date=datetime.now().strftime("%Y%m%d-%H-%M-%S")
-                print(instance["InstanceId"])
+                #print(instance["InstanceId"])
 
-                # response_snapshot=ec2_client.create_snapshots(
-                #     Description=tag["Value"]+" snapshot "+creation_date,
-                #     InstanceSpecification={
-                #         "InstanceId":"i-1c0079030f4cf77d1"
-                #     },
-                #     TagSpecifications=[
-                #         {
-                #             "ResourceType":"snapshot",
-                #             "Tags":[
-                #                 {
-                #                     "Key":"Name",
-                #                     "Value":"This is a snapshot of a EC1"
-                #                 },
-                #             ]
-                #         },
-                #     ],
-                #     # DryRun=True,
-                # )
+                response_snapshot=ec2_client.create_snapshots(
+                    #Description=tag["Value"]+" snapshot "+creation_date,
+                    Description=instance_name +" snapshot on " +creation_date,
+                    InstanceSpecification={
+                        #"InstanceId":"i-1c0079030f4cf77d1"
+                        "InstanceId":instance["InstanceId"]
+                    },
+                    TagSpecifications=[
+                        {
+                            "ResourceType":"snapshot",
+                            "Tags":[
+                                {
+                                    "Key":"Name",
+                                    #"Value":"This is a snapshot of a EC1"
+                                    "Value":instance_name+" snapshot on "+creation_date
+                                },
+                            ]
+                        },
+                    ],
+                    # DryRun=True,
+                )
+                print("....Done\n")
             else:
                 print("Skip.....")
         print("")
