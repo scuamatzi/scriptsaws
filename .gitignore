@@ -161,3 +161,7 @@ cython_debug/
 newservers.txt
 snapshotCreationSampleResult.txt
 ec2CreationSampleResult.txt
+createEC2.py
+describeImages.py
+list.py
+snapshot.py
